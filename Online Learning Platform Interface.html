@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LearnHub | E-Learning Platform</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f7ff;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* Navigation */
+header {
+    background: white;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 2px 10px #0000000d;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #5b4bdb;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #5b4bdb;
+}
+
+.header-button,
+.primary-button {
+    background: #5b4bdb;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.header-button:hover,
+.primary-button:hover {
+    background: #4031b3;
+}
+
+/* Hero */
+.hero {
+    padding: 65px 7%;
+    background: linear-gradient(120deg, #e9e7ff, #e2f6ff);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    flex: 1 1 300px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 55px);
+    line-height: 1.2;
+    color: #29215f;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #5b4bdb;
+}
+
+.hero p {
+    color: #555;
+    margin-bottom: 25px;
+    max-width: 550px;
+}
+
+.hero img {
+    width: min(100%, 420px);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px #29215f20;
+}
+
+/* Statistics */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px 7%;
+    background: white;
+    text-align: center;
+}
+
+.stat h2 {
+    color: #5b4bdb;
+    font-size: 28px;
+}
+
+.stat p {
+    color: #666;
+}
+
+/* General sections */
+.section {
+    padding: 55px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #29215f;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Categories */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.category-card {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px #00000008;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.category-card:hover {
+    border-color: #5b4bdb;
+    transform: translateY(-4px);
+}
+
+.category-card .icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.category-card h3 {
+    font-size: 17px;
+    color: #29215f;
+}
+
+.category-card p {
+    font-size: 13px;
+    color: #777;
+}
+
+/* Course filters */
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.filter-button {
+    padding: 10px 18px;
+    border: 1px solid #d8d5f5;
+    border-radius: 25px;
+    background: white;
+    cursor: pointer;
+    color: #4031b3;
+}
+
+.filter-button.active,
+.filter-button:hover {
+    background: #5b4bdb;
+    color: white;
+}
+
+/* Course cards */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #0000000c;
+    transition: transform 0.2s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-image {
+    position: relative;
+}
+
+.course-image img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+}
+
+.video-label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: #000000c9;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.course-content {
+    padding: 20px;
+}
+
+.course-category {
+    color: #5b4bdb;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.course-content h3 {
+    margin: 8px 0;
+    color: #29215f;
+    font-size: 21px;
+}
+
+.description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.instructor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 14px;
+}
+
+.instructor-avatar {
+    width: 42px;
+    height: 42px;
+    background: #e9e7ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    flex-shrink: 0;
+}
+
+.instructor small {
+    color: #777;
+}
+
+.objectives {
+    padding-left: 20px;
+    margin: 12px 0 18px;
+    font-size: 13px;
+    color: #555;
+}
+
+.objectives li {
+    margin-bottom: 5px;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.course-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.course-actions button {
+    flex: 1;
+}
+
+.secondary-button {
+    padding: 10px;
+    border: 1px solid #5b4bdb;
+    background: white;
+    color: #5b4bdb;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.secondary-button:hover {
+    background: #f0efff;
+}
+
+/* Learning dashboard */
+.dashboard {
+    background: #eeedff;
+}
+
+.dashboard-box {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+}
+
+.dashboard-box h3 {
+    margin-bottom: 15px;
+    color: #29215f;
+}
+
+.progress-item {
+    margin: 20px 0;
+}
+
+.progress-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.progress-track {
+    height: 12px;
+    background: #e6e5f1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5b4bdb, #7b72f2);
+    width: 0;
+    border-radius: 20px;
+    transition: width 0.4s;
+}
+
+/* Instructors */
+.instructor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.teacher-card {
+    background: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #00000008;
+}
+
+.teacher-avatar {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.teacher-card h3 {
+    color: #29215f;
+}
+
+.teacher-card p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Messages */
+.message {
+    margin-top: 15px;
+    text-align: center;
+    color: #4031b3;
+    overflow-wrap: anywhere;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #ff9f1c;
+    outline-offset: 3px;
+}
+
+/* Footer */
+footer {
+    background: #211d46;
+    color: white;
+    padding: 30px 7%;
+    text-align: center;
+}
+
+footer p {
+    color: #d8d5f5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .course-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .category-grid,
+    .instructor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 550px) {
+    .course-grid,
+    .category-grid,
+    .instructor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero img {
+        max-width: 320px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    .section {
+        padding: 40px 5%;
+    }
+
+    .course-actions {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header>
+    <div class="logo">📘 LearnHub</div>
+
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#courses">Courses</a>
+        <a href="#progress">My Learning</a>
+        <a href="#instructors">Instructors</a>
+    </nav>
+
+    <a href="#courses" class="header-button">Explore Courses</a>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Learn New Skills.<br><span>Build Your Future.</span></h1>
+
+        <p>
+            Discover online courses in programming, AI, web development,
+            and design. Learn at your own pace and develop skills for
+            your future career.
+        </p>
+
+        <a href="#courses" class="primary-button">Start Learning →</a>
+    </div>
+
+    <img
+        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+        alt="Students learning with computers">
+</section>
+
+<!-- Statistics -->
+<section class="stats">
+    <div class="stat">
+        <h2>6+</h2>
+        <p>Learning Courses</p>
+    </div>
+
+    <div class="stat">
+        <h2>3</h2>
+        <p>Instructors</p>
+    </div>
+
+    <div class="stat">
+        <h2>100%</h2>
+        <p>Learn at Your Pace</p>
+    </div>
+</section>
+
+<!-- Course Categories -->
+<section class="section" id="categories">
+    <h2 class="section-title">Explore Categories</h2>
+
+    <p class="section-subtitle">
+        Choose a learning path that matches your interests.
+    </p>
+
+    <div class="category-grid">
+        <article class="category-card"
+                 onclick="selectCategory('Programming')">
+            <div class="icon">💻</div>
+            <h3>Programming</h3>
+            <p>Python and coding fundamentals</p>
+        </article>
+
+        <article class="category-card"
+                 onclick="selectCategory('AI & ML')">
+            <div class="icon">🤖</div>
+            <h3>AI & Machine Learning</h3>
+            <p>Explore intelligent technology</p>
+        </article>
+
+        <article class="category-card"
+                 onclick="selectCategory('Web Development')">
+            <div class="icon">🌐</div>
+            <h3>Web Development</h3>
+            <p>Build modern websites</p>
+        </article>
+
+        <article class="category-card"
+                 onclick="selectCategory('Design')">
+            <div class="icon">🎨</div>
+            <h3>Design</h3>
+            <p>Learn creative design skills</p>
+        </article>
+    </div>
+</section>
+
+<!-- Courses -->
+<section class="section" id="courses">
+    <h2 class="section-title">Popular Courses</h2>
+
+    <p class="section-subtitle">
+        Explore courses, view learning objectives, and enroll.
+    </p>
+
+    <div class="filters">
+        <button class="filter-button active"
+                onclick="filterCourses('All', this)">All Courses</button>
+
+        <button class="filter-button"
+                onclick="filterCourses('Programming', this)">Programming</button>
+
+        <button class="filter-button"
+                onclick="filterCourses('AI & ML', this)">AI & ML</button>
+
+        <button class="filter-button"
+                onclick="filterCourses('Web Development', this)">Web Development</button>
+
+        <button class="filter-button"
+                onclick="filterCourses('Design', this)">Design</button>
+    </div>
+
+    <div class="course-grid" id="courseGrid"></div>
+
+    <p id="courseMessage" class="message"
+       role="status" aria-live="polite"></p>
+</section>
+
+<!-- Learning Progress -->
+<section class="section dashboard" id="progress">
+    <h2 class="section-title">My Learning Dashboard</h2>
+
+    <p class="section-subtitle">
+        Track the progress of your enrolled courses.
+    </p>
+
+    <div class="dashboard-box">
+        <h3>📊 Your Course Progress</h3>
+
+        <div id="progressList">
+            <p>No courses enrolled yet. Enroll in a course to get started!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Instructors -->
+<section class="section" id="instructors">
+    <h2 class="section-title">Meet Our Instructors</h2>
+
+    <p class="section-subtitle">
+        Learn from experienced educators and industry professionals.
+    </p>
+
+    <div class="instructor-grid">
+        <article class="teacher-card">
+            <div class="teacher-avatar">👨‍💻</div>
+            <h3>Rahul Sharma</h3>
+            <p>Programming Instructor</p>
+            <p>Specialization: Python and Problem Solving</p>
+        </article>
+
+        <article class="teacher-card">
+            <div class="teacher-avatar">👩‍🔬</div>
+            <h3>Priya Reddy</h3>
+            <p>AI & ML Instructor</p>
+            <p>Specialization: Machine Learning and AI</p>
+        </article>
+
+        <article class="teacher-card">
+            <div class="teacher-avatar">👨‍🎨</div>
+            <h3>Arjun Kumar</h3>
+            <p>Web & Design Instructor</p>
+            <p>Specialization: HTML, CSS, and UI Design</p>
+        </article>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <h2>📘 LearnHub</h2>
+    <p>Learn Today. Lead Tomorrow.</p>
+    <p>Student E-Learning Website Project</p>
+    <p>© 2026 LearnHub. All rights reserved.</p>
+</footer>
+
+<script>
+const courses = [
+    {
+        id: 1,
+        title: "Python Programming",
+        category: "Programming",
+        instructor: "Rahul Sharma",
+        avatar: "👨‍💻",
+        duration: "6 hours",
+        lessons: 10,
+        level: "Beginner",
+        description: "Learn Python from the basics and build your programming foundation.",
+        objectives: [
+            "Understand Python syntax and variables",
+            "Use loops, conditions, and functions",
+            "Create simple Python programs"
+        ],
+        image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=700&q=80",
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    },
+    {
+        id: 2,
+        title: "Artificial Intelligence",
+        category: "AI & ML",
+        instructor: "Priya Reddy",
+        avatar: "👩‍🔬",
+        duration: "8 hours",
+        lessons: 12,
+        level: "Intermediate",
+        description: "Discover AI concepts, intelligent systems, and real-world applications.",
+        objectives: [
+            "Understand AI fundamentals",
+            "Explore machine learning concepts",
+            "Identify practical AI applications"
+        ],
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=700&q=80",
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    },
+    {
+        id: 3,
+        title: "Web Development",
+        category: "Web Development",
+        instructor: "Arjun Kumar",
+        avatar: "👨‍🎨",
+        duration: "7 hours",
+        lessons: 11,
+        level: "Beginner",
+        description: "Build attractive and responsive websites using modern web technologies.",
+        objectives: [
+            "Create pages with HTML",
+            "Style layouts with CSS",
+            "Add interactivity with JavaScript"
+        ],
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80",
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    },
+    {
+        id: 4,
+        title: "Machine Learning Basics",
+        category: "AI & ML",
+        instructor: "Priya Reddy",
+        avatar: "👩‍🔬",
+        duration: "9 hours",
+        lessons: 14,
+        level: "Intermediate",
+        description: "Learn about data, model training, and introductory ML algorithms.",
+        objectives: [
+            "Understand supervised learning",
+            "Explore datasets and features",
+            "Learn basic model evaluation"
+        ],
+        image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=700&q=80",
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    },
+    {
+        id: 5,
+        title: "UI/UX Design",
+        category: "Design",
+        instructor: "Arjun Kumar",
+        avatar: "👨‍🎨",
+        duration: "5 hours",
+        lessons: 8,
+        level: "Beginner",
+        description: "Learn design principles and create clear, user-friendly interfaces.",
+        objectives: [
+            "Understand user-centred design",
+            "Explore colour and typography",
+            "Plan simple interface layouts"
+        ],
+        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=700&q=80",
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    },
+    {
+        id: 6,
+        title: "JavaScript Essentials",
+        category: "Web Development",
+        instructor: "Arjun Kumar",
+        avatar: "👨‍🎨",
+        duration: "6 hours",
+        lessons: 10,
+        level: "Beginner",
+        description: "Learn JavaScript fundamentals and make interactive web pages.",
+        objectives: [
+            "Understand variables and functions",
+            "Work with DOM elements",
+            "Handle events and form input"
+        ],
+        image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=700&q=80",
+        video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    }
+];
+
+// Enrollments and progress are kept for this browser session.
+const enrolled = new Map();
+
+const courseGrid = document.getElementById("courseGrid");
+
+function displayCourses(category = "All") {
+    courseGrid.replaceChildren();
+
+    const filtered = category === "All"
+        ? courses
+        : courses.filter(course => course.category === category);
+
+    filtered.forEach(course => {
+        const card = document.createElement("article");
+        card.className = "course-card";
+
+        const imageBox = document.createElement("div");
+        imageBox.className = "course-image";
+
+        const img = document.createElement("img");
+        img.src = course.image;
+        img.alt = course.title + " course thumbnail";
+        img.loading = "lazy";
+
+        const label = document.createElement("span");
+        label.className = "video-label";
+        label.textContent = "▶ " + course.lessons + " lessons";
+
+        imageBox.append(img, label);
+
+        const content = document.createElement("div");
+        content.className = "course-content";
+
+        const categoryLabel = document.createElement("span");
+        categoryLabel.className = "course-category";
+        categoryLabel.textContent = course.category;
+
+        const title = document.createElement("h3");
+        title.textContent = course.title;
+
+        const description = document.createElement("p");
+        description.className = "description";
+        description.textContent = course.description;
+
+        const instructor = document.createElement("div");
+        instructor.className = "instructor";
+
+        const avatar = document.createElement("div");
+        avatar.className = "instructor-avatar";
+        avatar.textContent = course.avatar;
+
+        const instructorInfo = document.createElement("div");
+
+        const instructorName = document.createElement("strong");
+        instructorName.textContent = course.instructor;
+
+        const instructorRole = document.createElement("small");
+        instructorRole.textContent = "Instructor";
+
+        instructorInfo.append(instructorName, document.createElement("br"), instructorRole);
+        instructor.append(avatar, instructorInfo);
+
+        const meta = document.createElement("div");
+        meta.className = "course-meta";
+        meta.textContent =
+            course.duration + " · " + course.level;
+
+        const objectiveHeading = document.createElement("strong");
+        objectiveHeading.textContent = "Learning Objectives";
+
+        const objectives = document.createElement("ul");
+        objectives.className = "objectives";
+
+        course.objectives.forEach(objective => {
+            const li = document.createElement("li");
+            li.textContent = objective;
+            objectives.append(li);
+        });
+
+        const actions = document.createElement("div");
+        actions.className = "course-actions";
+
+        const enrollButton = document.createElement("button");
+        enrollButton.className = "primary-button";
+        enrollButton.textContent = enrolled.has(course.id)
+            ? "Enrolled ✓"
+            : "Enroll Now";
+
+        enrollButton.addEventListener("click", () => enrollCourse(course.id));
+
+        const previewButton = document.createElement("button");
+        previewButton.className = "secondary-button";
+        previewButton.textContent = "Preview Lesson";
+
+        previewButton.addEventListener("click", () => previewLesson(course.id));
+
+        actions.append(enrollButton, previewButton);
+
+        content.append(
+            categoryLabel,
+            title,
+            description,
+            instructor,
+            meta,
+            objectiveHeading,
+            objectives,
+            actions
+        );
+
+        card.append(imageBox, content);
+        courseGrid.append(card);
+    });
+}
+
+// Filter courses
+function filterCourses(category, button) {
+    document.querySelectorAll(".filter-button").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    displayCourses(category);
+}
+
+// Category card navigation
+function selectCategory(category) {
+    const button = [...document.querySelectorAll(".filter-button")]
+        .find(btn => btn.textContent.trim() === category);
+
+    if (button) {
+        filterCourses(category, button);
+    } else {
+        filterCourses("All", document.querySelector(".filter-button"));
+    }
+
+    document.getElementById("courses").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// Enroll in a course
+function enrollCourse(id) {
+    if (!enrolled.has(id)) {
+        enrolled.set(id, 0);
+    }
+
+    displayCourses(
+        document.querySelector(".filter-button.active").textContent.trim() === "All Courses"
+            ? "All"
+            : document.querySelector(".filter-button.active").textContent.trim()
+    );
+
+    renderProgress();
+
+    document.getElementById("courseMessage").textContent =
+        "You are enrolled in " +
+        courses.find(course => course.id === id).title +
+        "! You can now track your demo learning progress.";
+}
+
+// Preview a lesson
+function previewLesson(id) {
+    const course = courses.find(item => item.id === id);
+
+    if (!enrolled.has(id)) {
+        document.getElementById("courseMessage").textContent =
+            "Preview selected: " + course.title +
+            ". Enroll to track your learning progress.";
+        return;
+    }
+
+    const progress = enrolled.get(id);
+    const nextProgress = Math.min(progress + 10, 100);
+
+    enrolled.set(id, nextProgress);
+
+    renderProgress();
+
+    document.getElementById("courseMessage").textContent =
+        "Demo lesson completed for " + course.title +
+        ". Progress updated to " + nextProgress + "%.";
+}
+
+// Learning dashboard
+function renderProgress() {
+    const list = document.getElementById("progressList");
+    list.replaceChildren();
+
+    if (enrolled.size === 0) {
+        const empty = document.createElement("p");
+        empty.textContent =
+            "No courses enrolled yet. Enroll in a course to get started!";
+        list.append(empty);
+        return;
+    }
+
+    enrolled.forEach((progress, id) => {
+        const course = courses.find(item => item.id === id);
+
+        const item = document.createElement("div");
+        item.className = "progress-item";
+
+        const heading = document.createElement("div");
+        heading.className = "progress-heading";
+
+        const title = document.createElement("strong");
+        title.textContent = course.title;
+
+        const percentage = document.createElement("span");
+        percentage.textContent = progress + "%";
+
+        heading.append(title, percentage);
+
+        const track = document.createElement("div");
+        track.className = "progress-track";
+        track.setAttribute("role", "progressbar");
+        track.setAttribute("aria-label", course.title + " progress");
+        track.setAttribute("aria-valuemin", "0");
+        track.setAttribute("aria-valuemax", "100");
+        track.setAttribute("aria-valuenow", String(progress));
+
+        const fill = document.createElement("div");
+        fill.className = "progress-fill";
+        fill.style.width = progress + "%";
+
+        track.append(fill);
+        item.append(heading, track);
+        list.append(item);
+    });
+}
+
+// Initial page
+displayCourses();
+renderProgress();
+</script>
+
+</body>
+</html>
+

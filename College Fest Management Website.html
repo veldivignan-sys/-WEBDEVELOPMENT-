@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FEST 2026 | College Festival</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #0b1020;
+    color: white;
+    line-height: 1.6;
+}
+
+header {
+    background: #11172b;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #00e5ff;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #00e5ff;
+}
+
+.hero {
+    min-height: 450px;
+    padding: 75px 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+        linear-gradient(120deg, rgba(11,16,32,.92),
+        rgba(80,20,120,.72)),
+        url("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 7px 16px;
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 80px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #00e5ff;
+}
+
+.hero p {
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    background: #00e5ff;
+    color: #07111f;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 7px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #7df3ff;
+}
+
+.section {
+    padding: 65px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.section-description {
+    text-align: center;
+    color: #aab2c8;
+    margin-bottom: 30px;
+}
+
+/* Festival information */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.info-card {
+    background: #151d33;
+    border: 1px solid #26334f;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.info-card h3 {
+    color: #00e5ff;
+    margin-bottom: 8px;
+}
+
+/* Event filters */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: #151d33;
+    color: white;
+    border: 1px solid #38435d;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #00e5ff;
+    color: #07111f;
+}
+
+/* Event cards */
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.event-card {
+    background: #151d33;
+    border: 1px solid #283550;
+    border-radius: 13px;
+    overflow: hidden;
+    transition: transform .25s;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+}
+
+.event-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.event-content {
+    padding: 20px;
+}
+
+.event-type {
+    color: #00e5ff;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.event-content h3 {
+    margin: 8px 0;
+    font-size: 21px;
+}
+
+.event-content p {
+    color: #b8c1d6;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.event-details {
+    font-size: 13px;
+    color: #e5e7eb;
+    margin-bottom: 15px;
+}
+
+.event-content .btn {
+    width: 100%;
+    text-align: center;
+}
+
+/* Schedule */
+
+.schedule {
+    max-width: 850px;
+    margin: auto;
+}
+
+.schedule-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background: #151d33;
+    border-left: 4px solid #00e5ff;
+    border-radius: 7px;
+}
+
+.schedule-time {
+    color: #00e5ff;
+    font-weight: bold;
+}
+
+.schedule-item p {
+    color: #aab2c8;
+}
+
+/* Coordinators */
+
+.coordinator-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.coordinator {
+    background: #151d33;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.coordinator .avatar {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.coordinator h3 {
+    color: #00e5ff;
+}
+
+.coordinator p {
+    color: #b8c1d6;
+    font-size: 14px;
+}
+
+/* Rules */
+
+.rules-box {
+    max-width: 850px;
+    margin: auto;
+    background: #151d33;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.rules-box li {
+    margin: 12px 0 12px 20px;
+    color: #d5dbea;
+}
+
+/* Registration */
+
+.registration {
+    background: linear-gradient(135deg, #171b3a, #252052);
+}
+
+.form-box {
+    max-width: 650px;
+    margin: auto;
+    background: #0f162b;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #34405e;
+}
+
+.form-box label {
+    display: block;
+    margin: 15px 0 7px;
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea {
+    width: 100%;
+    padding: 12px;
+    background: #151d33;
+    color: white;
+    border: 1px solid #38435d;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form-box input:focus,
+.form-box select:focus,
+.form-box textarea:focus {
+    outline: 2px solid #00e5ff;
+    border-color: #00e5ff;
+}
+
+.form-box input:invalid:not(:placeholder-shown) {
+    border-color: #ff6464;
+}
+
+.form-box .btn {
+    width: 100%;
+    margin-top: 22px;
+    font-size: 16px;
+}
+
+.message {
+    text-align: center;
+    margin-top: 18px;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    background: #070b15;
+    padding: 30px 7%;
+    text-align: center;
+    color: #aab2c8;
+}
+
+footer strong {
+    color: #00e5ff;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 850px) {
+    .event-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .info-grid,
+    .coordinator-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 550px) {
+    .event-grid,
+    .info-grid,
+    .coordinator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 380px;
+        padding: 50px 6%;
+    }
+
+    .section {
+        padding: 45px 6%;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .schedule-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header>
+    <div class="logo">⚡ FEST 2026</div>
+
+    <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#coordinators">Coordinators</a>
+        <a href="#rules">Rules</a>
+        <a href="#register">Register</a>
+    </nav>
+</header>
+
+<!-- Hero Banner -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">COLLEGE FESTIVAL 2026</span>
+
+        <h1>IGNITE YOUR<br><span>PASSION.</span></h1>
+
+        <p>
+            One campus. Countless talents. Unlimited memories.<br>
+            Join us for an unforgettable celebration of technology,
+            culture, creativity, and innovation.
+        </p>
+
+        <a href="#events" class="btn">Explore Events →</a>
+        <a href="#register" class="btn">Register Now</a>
+    </div>
+</section>
+
+<!-- Festival Information -->
+<section class="section">
+    <h2 class="section-title">The Festival Experience</h2>
+
+    <p class="section-description">
+        Discover your talent and connect with creative minds.
+    </p>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>💻 Technical</h3>
+            <p>Show your coding, engineering, and innovation skills.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>🎤 Cultural</h3>
+            <p>Celebrate music, dance, art, and creativity.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>🛠️ Workshops</h3>
+            <p>Learn new skills from hands-on learning sessions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Events -->
+<section class="section" id="events">
+    <h2 class="section-title">Explore Our Events</h2>
+
+    <p class="section-description">
+        Choose your category and find your next challenge.
+    </p>
+
+    <div class="filters">
+        <button class="filter-btn active"
+                onclick="filterEvents('All', this)">All Events</button>
+
+        <button class="filter-btn"
+                onclick="filterEvents('Technical', this)">💻 Technical</button>
+
+        <button class="filter-btn"
+                onclick="filterEvents('Cultural', this)">🎤 Cultural</button>
+
+        <button class="filter-btn"
+                onclick="filterEvents('Workshop', this)">🛠️ Workshops</button>
+    </div>
+
+    <div class="event-grid" id="eventGrid"></div>
+</section>
+
+<!-- Schedule -->
+<section class="section" id="schedule">
+    <h2 class="section-title">Event Schedule</h2>
+
+    <p class="section-description">
+        Sample schedule for the festival.
+    </p>
+
+    <div class="schedule">
+        <div class="schedule-item">
+            <div class="schedule-time">09:00 AM</div>
+            <div>
+                <h3>Inauguration Ceremony</h3>
+                <p>Main Auditorium · Opening ceremony and welcome.</p>
+            </div>
+        </div>
+
+        <div class="schedule-item">
+            <div class="schedule-time">10:00 AM</div>
+            <div>
+                <h3>Technical Competitions</h3>
+                <p>Computer Labs · Coding and project presentations.</p>
+            </div>
+        </div>
+
+        <div class="schedule-item">
+            <div class="schedule-time">12:00 PM</div>
+            <div>
+                <h3>Hands-on Workshops</h3>
+                <p>Seminar Hall · Learn new technical skills.</p>
+            </div>
+        </div>
+
+        <div class="schedule-item">
+            <div class="schedule-time">02:00 PM</div>
+            <div>
+                <h3>Cultural Competitions</h3>
+                <p>Open Stage · Dance, music, and creative performances.</p>
+            </div>
+        </div>
+
+        <div class="schedule-item">
+            <div class="schedule-time">05:00 PM</div>
+            <div>
+                <h3>Prize Distribution</h3>
+                <p>Main Auditorium · Celebrate the winners.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Coordinators -->
+<section class="section" id="coordinators">
+    <h2 class="section-title">Meet the Coordinators</h2>
+
+    <p class="section-description">
+        Contact the relevant team for event-related questions.
+    </p>
+
+    <div class="coordinator-grid">
+        <div class="coordinator">
+            <div class="avatar">👨‍💻</div>
+            <h3>Technical Team</h3>
+            <p>Coordinator: Technical Events Lead</p>
+            <p>Support: Coding, projects, and quizzes</p>
+        </div>
+
+        <div class="coordinator">
+            <div class="avatar">🎭</div>
+            <h3>Cultural Team</h3>
+            <p>Coordinator: Cultural Events Lead</p>
+            <p>Support: Dance, music, and arts</p>
+        </div>
+
+        <div class="coordinator">
+            <div class="avatar">🛠️</div>
+            <h3>Workshop Team</h3>
+            <p>Coordinator: Workshop Events Lead</p>
+            <p>Support: Sessions and learning activities</p>
+        </div>
+    </div>
+</section>
+
+<!-- Rules -->
+<section class="section" id="rules">
+    <h2 class="section-title">Festival Rules</h2>
+
+    <p class="section-description">
+        Please read the general rules before registering.
+    </p>
+
+    <div class="rules-box">
+        <ol>
+            <li>All participants must provide accurate registration details.</li>
+            <li>Carry your college identity card during the festival.</li>
+            <li>Follow the timings and instructions provided by coordinators.</li>
+            <li>Participants must respect other students, staff, and guests.</li>
+            <li>Bring your own laptop or equipment if the event requires it.</li>
+            <li>Follow workshop-specific instructions and safety guidelines.</li>
+            <li>Report to the event venue at least 15 minutes before the start.</li>
+            <li>The organizing committee's published event decisions will apply.</li>
+        </ol>
+    </div>
+</section>
+
+<!-- Registration Form -->
+<section class="section registration" id="register">
+    <h2 class="section-title">Register for the Festival</h2>
+
+    <p class="section-description">
+        Fill in your details to submit a demo registration.
+    </p>
+
+    <form class="form-box" id="registrationForm">
+        <label for="studentName">Full Name</label>
+        <input
+            type="text"
+            id="studentName"
+            name="studentName"
+            placeholder="Enter your full name"
+            minlength="2"
+            autocomplete="name"
+            required>
+
+        <label for="studentEmail">Email Address</label>
+        <input
+            type="email"
+            id="studentEmail"
+            name="studentEmail"
+            placeholder="Enter your email"
+            autocomplete="email"
+            required>
+
+        <label for="college">College Name</label>
+        <input
+            type="text"
+            id="college"
+            name="college"
+            placeholder="Enter your college name"
+            required>
+
+        <label for="branch">Branch / Department</label>
+        <select id="branch" name="branch" required>
+            <option value="">Select your branch</option>
+            <option value="CSE">Computer Science</option>
+            <option value="AIML">Artificial Intelligence & ML</option>
+            <option value="ECE">Electronics & Communication</option>
+            <option value="EEE">Electrical & Electronics</option>
+            <option value="MECH">Mechanical Engineering</option>
+            <option value="OTHER">Other</option>
+        </select>
+
+        <label for="event">Choose an Event</label>
+        <select id="event" name="event" required>
+            <option value="">Select an event</option>
+        </select>
+
+        <label for="year">Study Year</label>
+        <select id="year" name="year" required>
+            <option value="">Select your year</option>
+            <option value="1">First Year</option>
+            <option value="2">Second Year</option>
+            <option value="3">Third Year</option>
+            <option value="4">Fourth Year</option>
+        </select>
+
+        <label for="comments">Additional Information</label>
+        <textarea
+            id="comments"
+            name="comments"
+            rows="3"
+            placeholder="Any questions or requirements?"></textarea>
+
+        <button class="btn" type="submit">
+            Submit Registration
+        </button>
+
+        <p id="formMessage"
+           class="message"
+           role="status"
+           aria-live="polite"></p>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p><strong>FEST 2026</strong></p>
+    <p>Celebrate Technology. Celebrate Culture. Celebrate You.</p>
+    <p>College Festival Student Project</p>
+    <p>© 2026 FEST. All rights reserved.</p>
+</footer>
+
+<script>
+// Event information
+const events = [
+    {
+        name: "Code Sprint",
+        category: "Technical",
+        icon: "💻",
+        description: "Solve programming challenges and test your coding skills.",
+        date: "Day 1",
+        time: "10:00 AM",
+        venue: "Computer Lab",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Project Expo",
+        category: "Technical",
+        icon: "🚀",
+        description: "Showcase innovative projects and creative solutions.",
+        date: "Day 1",
+        time: "11:00 AM",
+        venue: "Exhibition Hall",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Tech Quiz",
+        category: "Technical",
+        icon: "🧠",
+        description: "Challenge your knowledge of science and technology.",
+        date: "Day 1",
+        time: "12:00 PM",
+        venue: "Seminar Hall",
+        image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Dance Battle",
+        category: "Cultural",
+        icon: "💃",
+        description: "Show your energy, rhythm, and stage presence.",
+        date: "Day 1",
+        time: "02:00 PM",
+        venue: "Open Stage",
+        image: "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Battle of Bands",
+        category: "Cultural",
+        icon: "🎸",
+        description: "Bring your musical talent to the festival stage.",
+        date: "Day 1",
+        time: "03:00 PM",
+        venue: "Main Stage",
+        image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "AI & ML Workshop",
+        category: "Workshop",
+        icon: "🤖",
+        description: "Explore artificial intelligence and machine learning basics.",
+        date: "Day 1",
+        time: "12:00 PM",
+        venue: "Innovation Lab",
+        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Web Design Workshop",
+        category: "Workshop",
+        icon: "🌐",
+        description: "Learn to create attractive websites using HTML and CSS.",
+        date: "Day 1",
+        time: "01:00 PM",
+        venue: "Computer Lab 2",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Photography",
+        category: "Cultural",
+        icon: "📸",
+        description: "Capture creative moments through your camera lens.",
+        date: "Day 1",
+        time: "04:00 PM",
+        venue: "Campus Grounds",
+        image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+        name: "Cybersecurity Workshop",
+        category: "Workshop",
+        icon: "",
+        description: "Learn cybersecurity fundamentals and online safety.",
+        date: "Day 1",
+        time: "03:00 PM",
+        venue: "Seminar Hall",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=700&q=80"
+    }
+];
+
+// Display event cards
+function displayEvents(category = "All") {
+    const grid = document.getElementById("eventGrid");
+    grid.replaceChildren();
+
+    const filtered = category === "All"
+        ? events
+        : events.filter(event => event.category === category);
+
+    filtered.forEach(event => {
+        const card = document.createElement("article");
+        card.className = "event-card";
+
+        const img = document.createElement("img");
+        img.src = event.image;
+        img.alt = event.name;
+        img.loading = "lazy";
+
+        const content = document.createElement("div");
+        content.className = "event-content";
+
+        const type = document.createElement("span");
+        type.className = "event-type";
+        type.textContent = event.icon + " " + event.category;
+
+        const title = document.createElement("h3");
+        title.textContent = event.name;
+
+        const desc = document.createElement("p");
+        desc.textContent = event.description;
+
+        const details = document.createElement("div");
+        details.className = "event-details";
+        details.textContent =
+            " " + event.date + " |  " + event.time +
+            " |  " + event.venue;
+
+        const button = document.createElement("a");
+        button.href = "#register";
+        button.className = "btn";
+        button.textContent = "Register for Event";
+
+        button.addEventListener("click", () => {
+            document.getElementById("event").value = event.name;
+        });
+
+        content.append(type, title, desc, details, button);
+        card.append(img, content);
+        grid.append(card);
+    });
+}
+
+// Filter events by category
+function filterEvents(category, button) {
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    displayEvents(category);
+}
+
+// Fill registration event options
+const eventSelect = document.getElementById("event");
+
+events.forEach(event => {
+    const option = document.createElement("option");
+    option.value = event.name;
+    option.textContent = event.name + " — " + event.category;
+    eventSelect.append(option);
+});
+
+// Demo registration
+document.getElementById("registrationForm")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const form = this;
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const studentName =
+            document.getElementById("studentName").value.trim();
+
+        const chosenEvent = eventSelect.value;
+
+        const message = document.getElementById("formMessage");
+
+        message.textContent =
+            "Thank you, " + studentName +
+            "! Your demo registration for " + chosenEvent +
+            " has been completed successfully.";
+
+        message.style.color = "#00e5ff";
+
+        form.reset();
+    });
+
+// Initial display
+displayEvents();
+</script>
+
+</body>
+</html>
